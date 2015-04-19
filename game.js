@@ -7,9 +7,8 @@ angular.module('myApp', ['ngDraggable', 'ngTouch'])
       $window, $rootScope,$scope, $log, $timeout,
       gameService, gameLogic,resizeGameAreaService) {
      'use strict';
-	var moveAudio = new Audio('audio/move.wav');  
-	moveAudio.load();
-	resizeGameAreaService.setWidthToHeight(1);
+	
+  	resizeGameAreaService.setWidthToHeight(1);
 
    var gameArea = document.getElementById("gameArea");
     var rowsNum = 8;
