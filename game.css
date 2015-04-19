@@ -1,0 +1,75 @@
+body {
+  width: 820px;
+  height: 820px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+.cell {
+  text-align:center;
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.even {
+  background-color: grey;
+}
+
+.odd {
+  background-color: black;
+}
+
+.board {
+  box-shadow: 0px 0px 50px #777777;
+}
+
+
+@-webkit-keyframes moveAnimation {
+  from {top: 0px; left: 0px;}
+}
+
+@keyframes moveAnimation {
+  from {top: 0px; left: 0px;}
+}
+
+.selectedChecker {
+  box-shadow: 0px 0px 5px 5px #228B22;
+}
+
+.slowlyAppear {
+  -webkit-animation: slowlyAppear 0.5s linear; /* Chrome, Safari, Opera */
+  animation: slowlyAppear 0.5s linear;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes slowlyAppear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Standard syntax */
+@keyframes slowlyAppear {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+
+.slowlyDisappear {
+  -webkit-animation: slowlyDisappear 0.5s linear; /* Chrome, Safari, Opera */
+  animation: slowlyDisappear 0.5s linear;
+}
+/* Chrome, Safari, Opera */
+@-webkit-keyframes slowlyDisappear {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+/* Standard syntax */
+@keyframes slowlyDisappear {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
