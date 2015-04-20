@@ -164,9 +164,7 @@ angular.module('myApp', ['ngDraggable', 'ngTouch'])
 				[{},{},{},{},{},{},{},{}],
 	 			[{},{},{},{},{},{},{},{}]];
       }
-      else{
-    	  moveAudio.play();
-      }
+  
       
       $scope.isYourTurn = params.turnIndexAfterMove >= 0 && // game is ongoing
         params.yourPlayerIndex === params.turnIndexAfterMove; // it's my turn
@@ -371,7 +369,10 @@ angular.module('myApp', ['ngDraggable', 'ngTouch'])
                 "-webkit-animation": "moveAnimation 0.5s",
                 "animation": "moveAnimation 0.5s"};
     }
-    
+      $scope.shouldSlowlyAppear = function (row, col) {
+      return $scope.delta !== undefined &&
+          $scope.delta.row === row && $scope.delta.col === col;
+    };
     gameService.setGame({
         gameDeveloperEmail: "xuxiaoyu89@gmail.com",
         minNumberOfPlayers: 2,
