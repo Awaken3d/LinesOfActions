@@ -1,7 +1,6 @@
-'use strict';
-
-angular.module('myApp', ['ngDraggable', 'ngTouch'])
-  .controller('Ctrl',['$window', '$rootScope','$scope', '$log', '$timeout',
+angular.module('myApp',[])
+  .controller('Ctrl',
+  ['$window', '$rootScope','$scope', '$log', '$timeout',
       'gameService', 'gameLogic','resizeGameAreaService',
        function (
       $window, $rootScope,$scope, $log, $timeout,
@@ -374,7 +373,7 @@ angular.module('myApp', ['ngDraggable', 'ngTouch'])
           $scope.delta.row === row && $scope.delta.col === col;
     };
     gameService.setGame({
-        gameDeveloperEmail: "xuxiaoyu89@gmail.com",
+        gameDeveloperEmail: "sm5119@nyu.edu",
         minNumberOfPlayers: 2,
         maxNumberOfPlayers: 2,
         exampleGame: gameLogic.getExampleGame(),
