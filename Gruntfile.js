@@ -92,7 +92,8 @@ module.exports = function(grunt) {
             'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.2.6.1.min.js',
             'red-checker.png', 'white-checker.png',
             'http://yoav-zibin.github.io/emulator/main.css', 
-            'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.min.js '
+            'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.min.js ',
+            'languages/en.js'
           ],
           network: ['dist/everything.min.js.map', 'dist/everything.js'],
           timestamp: true
