@@ -87,7 +87,6 @@ module.exports = function(grunt) {
             'game.css',
             'http://yoav-zibin.github.io/emulator/dist/dragAndDropListeners.min.js ',
             'http://yoav-zibin.github.io/emulator/dist/gameServices.min.js',
-            'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.2.6.1.min.js',
             'red-checker.png', 'white-checker.png',
             'http://yoav-zibin.github.io/emulator/main.css', 
             'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.min.js ',
