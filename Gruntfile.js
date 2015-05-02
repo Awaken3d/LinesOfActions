@@ -90,9 +90,9 @@ module.exports = function(grunt) {
             'red-checker.png', 'white-checker.png',
             'http://yoav-zibin.github.io/emulator/main.css', 
             'http://yoav-zibin.github.io/emulator/angular-translate/angular-translate.min.js ',
-            'languages/en.js'
+            'languages/en.js','languages/hn.js'
           ],
-          network: ['dist/everything.min.js.map', 'dist/everything.js'],
+          network: ['languages/en.js','languages/hn.js','dist/everything.min.js.map', 'dist/everything.js'],
           timestamp: true
         },
         dest: 'game.appcache',
