@@ -1,10 +1,10 @@
 angular.module('myApp',[])
   .controller('Ctrl',
   ['$window', '$rootScope','$scope', '$log', '$timeout',
-      'gameService', 'gameLogic','resizeGameAreaService',
+      'gameService', 'gameLogic','resizeGameAreaService', 'dragAndDropService',
        function (
       $window, $rootScope,$scope, $log, $timeout,
-      gameService, gameLogic,resizeGameAreaService) {
+      gameService, gameLogic,resizeGameAreaService, dragAndDropService) {
      'use strict';
 	
   	resizeGameAreaService.setWidthToHeight(1);
@@ -39,7 +39,8 @@ angular.module('myApp',[])
 		}, 500);
 	    //gameService.makeMove(move);
 	}
-	     window.handleDragEvent = handleDragEvent;
+	     //window.handleDragEvent = handleDragEvent;
+      dragAndDropService.addDragListener("gameArea", handleDragEvent);
       function handleDragEvent(type, clientX, clientY) {
         // Center point in gameArea
         var x = clientX - gameArea.offsetLeft;
