@@ -1,4 +1,4 @@
-angular.module('myApp',[])
+angular.module('myApp',['ngTouch', 'ui.bootstrap'])
   .controller('Ctrl',
   ['$window', '$rootScope','$scope', '$log', '$timeout',
       'gameService', 'gameLogic','resizeGameAreaService', 'dragAndDropService',
