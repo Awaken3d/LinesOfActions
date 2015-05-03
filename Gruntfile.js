@@ -90,7 +90,7 @@ module.exports = function(grunt) {
 'http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/fonts/glyphicons-halflings-regular.ttf',
              'dist/everything.min.js',
             'game.css',
-            'red-checker.png', 'white-checker.png','imgs/slide1.jpg', 'imgs/slide3.jpg','imgs/slide4.jpg','imgs/slide5.jpg',
+            'red-checker.png', 'white-checker.png','imgs/slide1.jpg', 'imgs/slide3.png','imgs/slide4.png','imgs/slide5.png',
             "http://yoav-zibin.github.io/emulator/dist/turnBasedServices.2.min.js",
             'http://yoav-zibin.github.io/emulator/main.css', 
             'languages/en.js','languages/hn.js'
