@@ -52,7 +52,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
           if (draggingPiece) {
             // Drag the piece where the touch is (without snapping to a square).
             var size = getSquareWidthHeight();
-            setDraggingPieceTopLeft({top: y - size.height / 2, left: x - size.width / 2});
+           // setDraggingPieceTopLeft({top: y - size.height / 2, left: x - size.width / 2});
           } else {
             return;
           }
@@ -65,8 +65,15 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
             if ($scope.board[row][col]) {
               $scope.onStartCallback(row,col);
               draggingStartedRowCol = {row: row, col: col};
-              draggingPiece = document.getElementById("MyPiece" + draggingStartedRowCol.row + "x" + draggingStartedRowCol.col);
+              if($scope.isRed(row,col)){
+              draggingPiece = document.getElementById("RedPiece" + draggingStartedRowCol.row + "x" + draggingStartedRowCol.col);
+            }
+              if($scope.isWhite(row,col)){
+              draggingPiece = document.getElementById("WhitePiece" + draggingStartedRowCol.row + "x" + draggingStartedRowCol.col);
+            }
+            
               draggingPiece.style['z-index'] = ++nextZIndex;
+              console.log("dragging piece=",draggingPiece);
             }
           }
           if (!draggingPiece) {
@@ -355,11 +362,11 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
     }
     
     $scope.isRed = function(row, col){
-    	return $board[row][col] === 'R';
+    	return $scope.board[row][col] === 'R';
     }
     
     $scope.isWhite = function(row, col){
-    	return $board[row][col] === 'W';
+    	return $scope.board[row][col] === 'W';
     }
     
     function getStyle (brow, bcol, arow, acol) {
