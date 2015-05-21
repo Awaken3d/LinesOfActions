@@ -164,7 +164,7 @@
                      ng-class="{cell: true, even: isEven($parent.$index, $index), odd: isOdd($parent.$index, $index)}"
                      ng-click="cellClicked($parent.$index, $index)">
                    
-                        <img id="MyPiece{{row}}x{{col}}" ng-class="{selectedChecker: isSelected($parent.$index, $index),slowlyAppear: shouldSlowlyAppear(row,col)}"
+                        <img id="MyPiece{{row}}x{{col}}x{{$index}}" ng-class="{selectedChecker: isSelected($parent.$index, $index),slowlyAppear: shouldSlowlyAppear(row,col)}"
                              ng-show="board[$parent.$index][$index] === 'W'"
                              style="position:absolute; left:{{col-5 }}%; width:100%; height:100%;"
                              src="white-checker.png">
