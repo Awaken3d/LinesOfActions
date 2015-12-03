@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApp" class="ng-scope" manifest="game.appcache">
+<!--<html lang="en" ng-app="myApp" class="ng-scope" manifest="game.appcache">-->
+<html lang="en" ng-app="myApp">
 
     <head>
         <meta charset="utf-8">
@@ -7,29 +8,29 @@
                 <title>LinesOfAction</title>
                 <meta name="description" content="LinesOfAction game">
                 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-                        
+
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
-   
+
      <!-- For the game rules/instructions, I use carousel from Angular UI + Bootstrap -->
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-touch.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
 
   <script src="dist/everything.min.js"></script>
-                         
 
-     <script>
+
+    <!-- <script>
   window.angularTranslationLanguages = ['en', 'hn'];
-  </script>
-<script src="http://yoav-zibin.github.io/emulator/dist/turnBasedServices.2.min.js"></script>
+</script>-->
+<script src="http://yoav-zibin.github.io/emulator/dist/turnBasedServices.3.min.js"></script>
 
   <link rel="stylesheet" type="text/css" href="http://yoav-zibin.github.io/emulator/main.css">
   <link rel="stylesheet" type="text/css" href="game.css">
-    
+
     </head>
-    <body ng-cloak ng-controller="Ctrl" bg-color=black>
+    <body ng-cloak bg-color=black>
 <!-- Just for the sake of showing how to I18N a game. -->
- 
+
  <div style="position:absolute; bottom:5px; left: 5px; z-index:10">
     <span ng-click="isHelpModalShown = true"
         class="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
@@ -63,10 +64,10 @@
               <table>
                 <tr>
                   <td>
-                  {{ 'RULES_SLIDE2' | translate }}
+                  {{ 'RULES_SLIDE2'  | translate}}
                   </td>
                   <td>
-                   
+
                   </td>
                 </tr>
               </table>
@@ -113,7 +114,7 @@
                   <td>
                     {{ 'RULES_SLIDE6' | translate }}
                   </td>
-                  
+
                 </tr>
               </table>
             </slide>
@@ -146,21 +147,20 @@
     </svg>
             <div ng-repeat="row in [0,1,2,3,4,5,6,7] " style="position:absolute; top:{{row * 100/8}}%; left:0; width:100%; height:{{100/8}}%;">
                 <div ng-repeat="col in [0,1,2,3,4,5,6,7]" style="position:absolute; top:0; left:{{col * 100/8}}%; width:{{100/8}}%; height:100%;"
-                     ng-class="{cell: true, even: isEven($parent.$index, $index), odd: isOdd($parent.$index, $index)}"
-                     ng-click="cellClicked($parent.$index, $index)">
-                   
-                        <img id="WhitePiece{{row}}x{{col}}" ng-class="{selectedChecker: isSelected($parent.$index, $index),slowlyAppear: shouldSlowlyAppear(row,col)}"
-                             ng-show="board[$parent.$index][$index] === 'W'"
+                     ng-class="{cell: true, even: game.isEven($parent.$index, $index), odd: game.isOdd($parent.$index, $index)}"
+                     ng-click="game.cellClicked($parent.$index, $index)">
+
+                        <img id="WhitePiece{{row}}x{{col}}" ng-class="{selectedChecker: game.isSelected($parent.$index, $index),slowlyAppear: game.shouldSlowlyAppear(row,col)}"
+                             ng-show="game.board[$parent.$index][$index] === 'W'"
                              style="position:absolute; left:{{col-5 }}%; width:100%; height:100%;"
                              src="white-checker.png">
-                        <img id="RedPiece{{row}}x{{col}}" ng-class="{selectedChecker: isSelected($parent.$index, $index),slowlyAppear: shouldSlowlyAppear(row,col)}"
-                             ng-show="board[$parent.$index][$index] === 'R'"
+                        <img id="RedPiece{{row}}x{{col}}" ng-class="{selectedChecker: game.isSelected($parent.$index, $index),slowlyAppear: game.shouldSlowlyAppear(row,col)}"
+                             ng-show="game.board[$parent.$index][$index] === 'R'"
                              style="position:absolute; left:{{col-5 }}%; width:100%; height:100%;"
                              src="red-checker.png">
-                  
+
                 </div>
             </div>
         </div>
     </body>
 </html>
-

@@ -1,12 +1,12 @@
-angular.module('myApp',['ngTouch', 'ui.bootstrap'])
+angular.module('myApp',['ngTouch', 'ui.bootstrap','gameServices'])
   .controller('Ctrl',
   ['$window', '$rootScope','$scope', '$log', '$timeout',
-      'gameService', 'gameLogic','resizeGameAreaService', 'dragAndDropService',
+       'gameLogic',
        function (
       $window, $rootScope,$scope, $log, $timeout,
-      gameService, gameLogic,resizeGameAreaService, dragAndDropService) {
+       gameLogic) {
      'use strict';
-	
+
   	resizeGameAreaService.setWidthToHeight(1);
 
    var gameArea = document.getElementById("gameArea");
@@ -16,9 +16,9 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
     var draggingPiece = null;
     var draggingPieceAvailableMoves = null;
     var nextZIndex = 61;
-    
+
 	function sendComputerMove() {
-		
+
 		$scope.style = [[{},{},{},{},{},{},{},{}],
 		                [{},{},{},{},{},{},{},{}],
 		                [{},{},{},{},{},{},{},{}],
@@ -71,7 +71,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
               if($scope.isWhite(row,col)){
               draggingPiece = document.getElementById("WhitePiece" + draggingStartedRowCol.row + "x" + draggingStartedRowCol.col);
             }
-            
+
               draggingPiece.style['z-index'] = ++nextZIndex;
               console.log("dragging piece=",draggingPiece);
             }
@@ -125,7 +125,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
           y: row * size.height + size.height / 2
         };
       }
-      
+
       function dragDone(from, to) {
         $rootScope.$apply(function () {
           var msg = "Dragged piece " + from.row + "x" + from.col + " to square " + to.row + "x" + to.col;
@@ -171,12 +171,12 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
 				[{},{},{},{},{},{},{},{}],
 	 			[{},{},{},{},{},{},{},{}]];
       }
-  
-      
+
+
       $scope.isYourTurn = params.turnIndexAfterMove >= 0 && // game is ongoing
         params.yourPlayerIndex === params.turnIndexAfterMove; // it's my turn
       $scope.turnIndex = params.turnIndexAfterMove;
-      
+
       // Is it the computer's turn?
       if ($scope.isYourTurn
           && params.playersInfo[params.yourPlayerIndex].playerId === '') {
@@ -202,10 +202,10 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
     		$scope.droppable[r][c] = true;
     	}
     }*/
-              
-              
+
+
     updateUI({stateAfterMove: {}, turnIndexAfterMove: 0, yourPlayerIndex: -2});
-    
+
     /*
     $scope.droppable = [[false,false,false,false,false,false,false,false],
                         [false,false,false,false,false,false,false,false],
@@ -216,7 +216,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
                         [false,false,false,false,false,false,false,false],
                         [false,false,false,false,false,false,false,false]
                         ];
-    
+
     $scope.firstClicked = false;
     $scope.brow = -1;
     $scope.bcol = -1;
@@ -234,8 +234,8 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
         	updateDroppable(row, col);
         	return;
         }
-        
-        try { 
+
+        try {
           var move = gameLogic.createMove($scope.board, $scope.brow, $scope.bcol, row, col, $scope.turnIndex);
           //test if the move is OK.
           var test = gameLogic.isMoveOk({turnIndexBeforeMove: $scope.turnIndex,
@@ -247,7 +247,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
         	  //updateUI($scope.params);
         	  return;
           }
-          
+
           $scope.isYourTurn = false; // to prevent making another move
           $scope.firstClicked = false;
           // TODO: show animations and only then send makeMove.
@@ -280,7 +280,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
         }
     };
     */
-     
+
     $scope.onStartCallback = function(r, c){
     	//var r = arguments[2];
     	//var c = arguments[3];
@@ -290,8 +290,8 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
 	    $scope.bcol = c;
     	return;
     };
-    
-     
+
+
     $scope.onDropCallback = function(row, col){
     	//var r = arguments[2];
     	//var c = arguments[3];
@@ -299,7 +299,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
         $log.info("brow, bcol: ", $scope.brow, $scope.bcol);
     	$scope.isDragging = true;
     	//$scope.cellClicked(r, c);
-    	try { 
+    	try {
             var move = gameLogic.createMove($scope.board, $scope.brow, $scope.bcol, row, col, $scope.turnIndex);
             //test if the move is OK.
             var test = gameLogic.isMoveOk({turnIndexBeforeMove: $scope.turnIndex,
@@ -311,7 +311,7 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
           	  //updateUI($scope.params);
           	  return;
             }
-            
+
             $scope.isYourTurn = false; // to prevent making another move
             //$scope.firstClicked = false;
             // TODO: show animations and only then send makeMove.
@@ -341,13 +341,13 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
           } catch (e) {
             $log.info(["Cell is already full in position:", row, col]);
             return;
-          }      
-              
-              
-              
+          }
+
+
+
     	return;
     };
-    
+
     $scope.isEven = function(row, col){
     	var t = row + col;
     	return t%2 === 0;
@@ -356,19 +356,19 @@ angular.module('myApp',['ngTouch', 'ui.bootstrap'])
     	var t = row + col;
     	return t%2 === 1;
     }
-    
+
     $scope.isSelected = function(row, col){
     	return $scope.brow === row && $scope.bcol === col;
     }
-    
+
     $scope.isRed = function(row, col){
     	return $scope.board[row][col] === 'R';
     }
-    
+
     $scope.isWhite = function(row, col){
     	return $scope.board[row][col] === 'W';
     }
-    
+
     function getStyle (brow, bcol, arow, acol) {
         var left = (acol - bcol) * 100 + "px";
         var top = (arow - brow) * 100 + "px";
